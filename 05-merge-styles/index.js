@@ -3,10 +3,10 @@ const path = require('path');
 const resultFilePath = path.join(__dirname, 'project-dist', 'bundle.css');
 const originFolderPath = path.join(__dirname, 'styles');
 
-let allStyles = [];
-
 (async () => {
   const fileArr = await fsPromises.readdir(originFolderPath, { withFileTypes: true });
+  const allStyles = [];
+
   for (let file of fileArr) {
     const currentFilePath = path.join(originFolderPath, file.name);
     const extension = path.extname(currentFilePath);
@@ -16,6 +16,5 @@ let allStyles = [];
       allStyles.push(`${fileStyles}\n`);
     }
   }
-
   await fsPromises.writeFile(resultFilePath, allStyles.join(''));
 })();
