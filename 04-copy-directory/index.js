@@ -21,12 +21,8 @@ async function copyDir(originPath, destinationPath) {
 
   Promise.all(removePromises)
     .then(() => {
-      // console.log('all files deleted');
       return fsPromises.mkdir(destinationPath, { recursive: true });
     })
-    // .then(() => {
-    //   console.log('folder created');
-    // })
     .then(() => {
       const copyFilePromises = [];
       fs.readdir(originPath, (err, files) => {
